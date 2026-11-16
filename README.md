@@ -38,7 +38,7 @@ On every start, `cap-web` also sets the bucket's CORS rule ([`web/bucket-cors.mj
 Optional variables. Add them on `cap-web` when you need them (see the [self-hosting docs](https://cap.so/docs/self-hosting)):
 
 - `RESEND_API_KEY` and `RESEND_FROM_DOMAIN`: send sign-in codes by email. Without them, codes appear in `cap-web`'s Deploy Logs.
-- `CAP_ALLOWED_SIGNUP_DOMAINS`: only these email domains can create an account.
+- `CAP_ALLOWED_SIGNUP_DOMAINS`: only these email domains can create an account (comma-separated).
 - `ASSEMBLY_API_KEY`, `GROQ_API_KEY`, `OPENAI_API_KEY`: transcription, AI titles and summaries.
 - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, or `OIDC_ISSUER` / `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET`: single sign-on.
 
@@ -51,6 +51,7 @@ Don't change `DATABASE_ENCRYPTION_KEY` after the first start, because encrypted 
 1. Open the `cap-web` domain and sign in with your email.
 2. Copy the 6-digit code from `cap-web` → Deployments → Deploy Logs (look for "VERIFICATION CODE").
 3. In Cap Desktop, set Settings → "Cap Server URL" to your domain.
+4. Before you share the URL, set `CAP_ALLOWED_SIGNUP_DOMAINS` on `cap-web`. Otherwise anyone who can reach the server can create an account.
 
 ## Updates
 
