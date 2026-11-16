@@ -15,6 +15,9 @@ export S3_INTERNAL_ENDPOINT="${S3_INTERNAL_ENDPOINT:-$S3_PUBLIC_ENDPOINT}"
 # The Chrome Web Store extension's ID, so the Cap extension can sign in.
 export CAP_CHROME_EXTENSION_ID="${CAP_CHROME_EXTENSION_ID-fefjaffcodfiogbbngmjkcjpbpclbdcp}"
 
+# Let browsers on WEB_URL upload straight to the bucket (CORS with ETag).
+node /app/railway-bucket-cors.mjs || true
+
 # Listen on IPv4 and IPv6, so Railway's private network reaches the webhook.
 export HOSTNAME="${CAP_LISTEN_HOST:-::}"
 

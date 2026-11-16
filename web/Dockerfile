@@ -4,6 +4,7 @@
 FROM ghcr.io/capsoftware/cap-web:candidate-f415c09c5@sha256:b93679f183fa5ce417e03d0b59dd9bdf094d5491cacf291dbada3fc024b82718
 
 COPY --chown=nextjs:nodejs --chmod=755 start.sh /app/railway-start.sh
+COPY --chown=nextjs:nodejs --chmod=644 bucket-cors.mjs /app/railway-bucket-cors.mjs
 
 ENV PORT=3000
 EXPOSE 3000

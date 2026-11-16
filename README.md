@@ -33,12 +33,16 @@ The start script also sets:
 - virtual-hosted bucket URLs (`S3_PATH_STYLE=false`; set it to `true` for MinIO)
 - the Chrome Web Store extension ID (`CAP_CHROME_EXTENSION_ID`), so the Cap extension can sign in
 
+On every start, `cap-web` also sets the bucket's CORS rule ([`web/bucket-cors.mjs`](web/bucket-cors.mjs)), so browsers on your Cap domain can upload recordings and read the `ETag` header, as Cap's docs require. Only your `WEB_URL` origin is allowed. Add more origins with `CAP_BUCKET_CORS_ORIGINS` (comma-separated), or turn it off with `CAP_SET_BUCKET_CORS=false` when you manage the bucket yourself.
+
 Optional variables. Add them on `cap-web` when you need them (see the [self-hosting docs](https://cap.so/docs/self-hosting)):
 
 - `RESEND_API_KEY` and `RESEND_FROM_DOMAIN`: send sign-in codes by email. Without them, codes appear in `cap-web`'s Deploy Logs.
 - `CAP_ALLOWED_SIGNUP_DOMAINS`: only these email domains can create an account.
 - `ASSEMBLY_API_KEY`, `GROQ_API_KEY`, `OPENAI_API_KEY`: transcription, AI titles and summaries.
 - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, or `OIDC_ISSUER` / `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET`: single sign-on.
+
+If you add a custom domain, change `WEB_URL` to it and redeploy: sign-in links, share links and the bucket's CORS rule follow it.
 
 Don't change `DATABASE_ENCRYPTION_KEY` after the first start, because encrypted fields can't be read without it.
 
